@@ -1,6 +1,6 @@
 """questionNaire URL Configuration
 
-The `urlpatterns` list routes URLs to views. For more information please see:
+The `urlpatterns` questionnaires routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
 Examples:
 Function views
@@ -17,7 +17,13 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^register', views.register),
-    url(r'^login/', views.Userlogin),
-    url(r'^get_code/', views.get_code),
+    url(r'^$', views.index),
+    url(r'^create/', views.createQuestionnaire),
+    url(r'^AllLists/', views.AllLists),
+    url(r'^MyLists/', views.MyLists),
+    url(r'^my_questions_options/(?P<pk>[0-9]+)/$', views.my_questions_options),
+    url(r'^questions_options/(?P<pk>[0-9]+)/$', views.questions_options),
+    url(r'^naire_delete/(?P<pk>[0-9]+)/$', views.naire_delete),
+    url(r'^naire_update/(?P<pk>[0-9]+)/$', views.naire_update),
+    # url(r'^create_question/',views.create_question),
 ]

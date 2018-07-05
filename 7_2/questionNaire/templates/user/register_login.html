@@ -40,7 +40,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12">
-                            <form id="login-form" action="/question/login/" method="post" role="form"
+                            <form id="login-form" action="/user/login/" method="post" role="form"
                                   style="display: block;">{% csrf_token %}
                                 <div class="form-group">
                                     <input type="text" name="username" id="username" tabindex="1" class="form-control"
@@ -68,7 +68,7 @@
 
 
 
-                            <form id="register-form" action="/question/register/" method="post" role="form"
+                            <form id="register-form" action="/user/register/" method="post" role="form"
                                   style="display: none;">{% csrf_token %}
 {#                                <div class="form-group">#}
 {#                                    <input type="text" name="name" id="name" tabindex="1" class="form-control"#}
@@ -89,8 +89,8 @@
                                             value="0">女
                                 </div>
                                 <div class="form-group">
-                                    <input type="number" name="age" id="email" tabindex="1" class="form-control"
-                                           placeholder="your age" value="">
+                                    <input type="number" name="age" id="age" tabindex="1" class="form-control"
+                                           placeholder="your age" value="0">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" name="password" id="password" tabindex="2"
@@ -139,7 +139,8 @@
     function change_code(obj) {
         $(obj).removeAttr('src');
     {#    发送请求,获得新的验证码#}
-        $.get('/question/get_code',function (resp_data) {
+        $.get('/user/get_code',function (resp_data) {
+            console.log(resp_data)
             $(obj).attr('src',"data:image/jpeg;base64,"+resp_data)
 
         })
