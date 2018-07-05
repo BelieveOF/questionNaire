@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h2>问卷标题:{{ title }}</h2>
+    <form method="post" action="">{% csrf_token %}
+        <ol>
+        {% for question in questions %}
+                    <li>
+                        <p>{{  question.name }}</p>
+                        {% for option in question.all_option %}
+                                <input type="radio" name="{{ question.id }}">{{ option.name }}
+                        {% endfor %}
+                    </li>
+        {% endfor %}
+        </ol>
+        {#  需要验证是否填写完毕  #}
+        {#  提交到的 数据库模型  #}
+        {#  用户的选项保存到哪里      #}
+{#        <input type="submit" value="确认提交问卷">#}
+    </form>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h2>问卷标题:{{ title }}</h2>
+     <div>
+        <ol>
+        {% for question in questions %}
+                    <li>
+                        <p>{{  question.name }}</p>
+                        {% for option in question.all_option %}
+                                <input type="radio" name="{{ question.id }}">{{ option.name }}
+                        {% endfor %}
+                    </li>
+        {% endfor %}
+        </ol>
+    </div>
+
+    <h3>添加问题</h3>
+    <form action="/questionnaires/my_questions_options/{{ id }}/" method="post">{% csrf_token %}
+        <input type="text" placeholder="请添加问题:" name="add_title" id="add_title_id">
+{#        <input type="button" name="addinputtext" value="添加选项" onClick="AddInputText(document.all.mydiv.innerHTML)"/>#}
+{#        <input type="button" name="delinputtext" value="删除选项" onClick="DelInputText(document.all.mydiv.innerHTML)"/>#}
+{##}
+{#        #}
+{#        <input type="checkbox" value="1" checked="checked">该问题是否是单选#}
+        <div id="mydiv">
+            <input type="hidden" name="questionnaire_id" value="{{ id }}">
+            <input type='text' id='1' placeholder="1" name="option1"><br>
+            <input type='text' id='2' placeholder="2" name="option2"><br>
+        </div>
+        <input type="submit" value="提交问题">
+    </form>
+
+
+<script language="javascript">
+        num = 3;
+
+        function AddInputText(innerHTML) {
+            document.all.mydiv.innerHTML = innerHTML + "<input name='option' type='text' id='" + num + "' placeholder='" + num + "'>";
+            num += 1;
+            document.all.mydiv.innerHTML;
+            return num
+        }
+
+        num = AddInputText(innerHTML) - 1
+
+        function DelInputText(innerHTML) {
+            console.log(num)
+            num -= 1;
+            var endPos = innerHTML.lastIndexOf("<");
+            innerHTML = innerHTML.substr(0, endPos);
+
+            document.all.mydiv.innerHTML = innerHTML;
+        }
+
+    </script>
+
+
+{% endblock %}

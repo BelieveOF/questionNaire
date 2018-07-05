@@ -1,0 +1,55 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <style>
+        *{margin:0;padding:0;}
+        td, th {
+            width: 80px;
+            height: 20px;
+            text-align: center;
+            border: 1px solid red;
+            border-radius: 10px;
+        }
+
+        .detail {
+            width: 200px;
+            height: 20px;
+        }
+
+        table {
+            margin: auto
+        }
+    ol{padding-left: 20px;}
+    </style>
+
+    <table>
+        <tr>
+            <th>问卷ID</th>
+            <th>问卷标题</th>
+            <th>问卷类型</th>
+            <th>创建时间</th>
+            <th>创建者</th>
+            <th>创建id</th>
+            <th>点击量</th>
+        </tr>
+
+            {% for foo in myList %}
+
+            <tr>
+                <td> {{ foo.id }}</td>
+                <td class="detail">
+                    <a href="/questionnaires/questions_options/{{ foo.id }}">{{ foo.title }}</a>
+                </td>
+                <td>{{ foo.questionnaire_type }}</td>
+                <td class="detail">{{ foo.create_time|date:'Y-m-d' }}</td>
+                <td>{{ foo.creator }}</td>
+                <td>{{ foo.creator_id }}</td>
+                <td>{{ foo.clicks }}</td>
+            </tr>
+        {% endfor %}
+
+
+    </table>
+
+
+{% endblock %}

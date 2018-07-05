@@ -1,0 +1,41 @@
+<html >
+<head>
+<title>My Test Page</title>
+
+<script language="javascript">
+    num=3;
+  function AddInputText(innerHTML)
+  {
+
+    document.all.mydiv.innerHTML = innerHTML + "<input type='text' id='"+num+"'>";
+      num +=1;
+    document.all.mydiv.innerHTML;
+    return num
+  }
+    num=AddInputText(innerHTML)-1
+
+  function DelInputText(innerHTML)
+  {
+      console.log(num)
+      num-=1;
+    var endPos = innerHTML.lastIndexOf("<");
+    innerHTML = innerHTML.substr(2,endPos);
+
+    document.all.mydiv.innerHTML = innerHTML;
+  }
+
+</script>
+</head>
+<body>
+
+<input type="button" name="addinputtext" value="add_input_text" onClick="AddInputText(document.all.mydiv.innerHTML)"/>
+
+<input type="button" name="delinputtext" value="del_input_text" onClick="DelInputText(document.all.mydiv.innerHTML)"/>
+
+<div id="mydiv">
+
+    <input type='text' id='1'>
+    <input type='text' id='2'>
+</div>
+
+</body>
